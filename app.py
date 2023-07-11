@@ -1,9 +1,8 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 from PIL import Image
 import time
 import datetime
+import base64
 
 
 st.title('🥳 Parabéns, Papá 🥳')
@@ -21,6 +20,15 @@ def countdown(stop):
 
         if difference.days == 0 and count_hours == 0 and count_minutes == 0 and count_seconds == 0:
             wait_string.text("🏝 A REFORMA CEHEGOUUUUUUU 🏝")
+            file_ = open("data/manel_cambalhota.gif", "rb")
+            contents = file_.read()
+            data_url = base64.b64encode(contents).decode("utf-8")
+            file_.close()
+
+            st.markdown(
+                f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+                unsafe_allow_html=True,
+            )
             break
         wait_string.text(f'⏳ Falta(m) : '
                               f'{str(difference.days)}  dia(s)'
